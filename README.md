@@ -1,0 +1,3 @@
+# ThinkReactAdmin
+
+React版带权限配置的后台管理系统，结合ThinkJSPro可以快速构建一个可发布到线上的标准化通用后台管理系统。
