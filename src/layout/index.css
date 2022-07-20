@@ -1,0 +1,33 @@
+.sider {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.menu-icon {
+    margin-right: 10px;
+}
+
+.logo-title {
+    color: #ffffff;
+    padding: 16px 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.trigger {
+    font-size: 18px;
+    margin-left: -20px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.trigger:hover {
+    color: #1890ff;
+}
+
+.site-layout .site-layout-background {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #f0f0f0;
+}

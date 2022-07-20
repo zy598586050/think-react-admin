@@ -1,0 +1,40 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .trigger{
+        color: #ffffff;
+    }
+    .nav-right-box{
+        display: flex;
+        align-items: center;
+        .avatar{
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+        }
+        .user-name{
+            font-size: 14px;
+            color: #ffffff;
+            margin-left: 8px;
+        }
+    }
+    .nav-right-box:hover{
+        cursor: pointer;
+    }
+    .header-left{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .breadcrumb{
+            margin-left: 20px;
+            .ant-breadcrumb-separator{
+                color: #ffffff;
+            }
+            .item{
+                color: #ffffff;
+            }
+        }
+    }
+}
