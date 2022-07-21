@@ -1,9 +1,8 @@
 import Reatc, { Suspense } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Loading from './components/loading'
 import router, { IRoute } from './router'
 import 'antd/dist/antd.css'
-import NotFound from './views/home/404'
 import Auth from './components/auth'
 
 // 路由递归
@@ -20,7 +19,7 @@ function childrenRoute({ children }: any) {
           <Loading />
         }>
           {
-            item?.redirect === false ? <item.component/> : <Auth children={<item.component/>}/>
+            item?.isAuth === false ? <item.component/> : <Auth children={<item.component/>}/>
           }
         </Suspense>
       }
@@ -31,7 +30,7 @@ function childrenRoute({ children }: any) {
 }
 
 function App() {
-  return <BrowserRouter>
+  return <Router>
     <Routes>
       {
         router.map((route: IRoute) => (
@@ -43,7 +42,7 @@ function App() {
                 <Loading />
               }>
                 {
-                  route?.redirect === false ? <route.component/> : <Auth children={<route.component/>}/>
+                  route?.isAuth === false ? <route.component/> : <Auth children={<route.component/>}/>
                 }
               </Suspense>
             }
@@ -52,9 +51,9 @@ function App() {
           </Route>
         ))
       }
-      <Route path='*' element={<NotFound/>}></Route>
+      <Route path='*' element={<Navigate to="/404"/>}></Route>
     </Routes>
-  </BrowserRouter>
+  </Router>
 }
 
 export default App

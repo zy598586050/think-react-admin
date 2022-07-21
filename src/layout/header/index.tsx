@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Dropdown, Menu, Modal, Input, Button, Form, Breadcrumb } from 'antd'
+import { Layout, Dropdown, Menu, Modal, Input, Button, Form, Breadcrumb, Popconfirm } from 'antd'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -69,7 +69,7 @@ const Header = () => {
                 }
             })
         }
-        deep(user.menu_tree)
+        user.menu_tree && deep(user.menu_tree)
         setBreadCrumb(arr)
     }
     // 监听路由变化
@@ -81,9 +81,17 @@ const Header = () => {
             title='重置密码'
             visible={isShowEditPass}
             onCancel={closePass}
+            maskClosable={false}
             footer={<>
                 <Button type='ghost' onClick={closePass}>取消</Button>
-                <Button type='primary' onClick={resetSubmit}>确定</Button>
+                <Popconfirm
+                    onConfirm={resetSubmit}
+                    title="您确定要重置密码吗？"
+                    cancelText="取消"
+                    okText="确定"
+                >
+                    <Button type='primary'>确定</Button>
+                </Popconfirm>
             </>}
         >
             <Form form={form1}>

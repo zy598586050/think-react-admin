@@ -11,7 +11,7 @@ export interface IRoute {
     path: string;
     meta: RouterMeta;
     component?: any;
-    redirect?: boolean;
+    isAuth?: boolean;
     children?: IRoute[];
     hidden?: boolean;
 }
@@ -31,6 +31,14 @@ const router: IRoute[] = [
                 },
                 hidden: true,
                 component: React.lazy(() => import('../views/home/index'))
+            },
+            {
+                path: '/404',
+                meta: {
+                    title: '404'
+                },
+                hidden: true,
+                component: React.lazy(() => import('../views/home/404'))
             }
         ]
     },
@@ -39,16 +47,8 @@ const router: IRoute[] = [
         meta: {
             title: '登录'
         },
-        redirect: false,
+        isAuth: false, // 代表不进行权限校验
         component: React.lazy(() => import('../views/login/index'))
-    },
-    {
-        path: '404',
-        meta: {
-            title: '404'
-        },
-        redirect: false,
-        component: React.lazy(() => import('../views/home/404'))
     }
 ]
 
@@ -68,7 +68,7 @@ const loadAsyncRoutes = async () => {
                     const obj: any = {
                         path: v.path,
                         meta: v.meta,
-                        component: React.lazy(() => import(url)),
+                        component: React.lazy(() => import(/* @vite-ignore */url)),
                     }
                     if (v.children && v.children.length > 0) {
                         obj['children'] = deep(v.children)
@@ -76,7 +76,7 @@ const loadAsyncRoutes = async () => {
                     return obj
                 })
             }
-            deep(getMenuAuth).forEach((v: any) => {
+            getMenuAuth && deep(getMenuAuth).forEach((v: any) => {
                 router[0].children?.push(v)
             })
         } catch (error) {

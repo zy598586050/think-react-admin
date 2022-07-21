@@ -11,7 +11,7 @@ const getMenu = (item: any) => {
     return newArr.map((v: any) => {
         const obj: any = {
             key: v.path,
-            icon: <Icon name={v.meta?.icon}/>,
+            icon: v.meta?.icon ? <Icon name={v.meta?.icon}/> : null,
             label: v.meta?.title
         }
         if (v.children && v.children.length > 0) {
