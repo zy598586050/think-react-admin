@@ -5,7 +5,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Header from './header'
 import Menu from './menu'
-import './index.css'
+import './index.scss'
 
 const { Sider, Content } = Layout
 
